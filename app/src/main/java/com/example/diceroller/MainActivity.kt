@@ -2,6 +2,7 @@ package com.example.diceroller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import com.example.diceroller.databinding.ActivityMainBinding
 import kotlin.random.Random
 
@@ -14,11 +15,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.rollButton.setOnClickListener {
-            diceRoller()
+            diceRoller(binding.diceImage)
+            diceRoller(binding.diceImageTwo)
         }
     }
 
-    private fun diceRoller() {
+    private fun diceRoller(diceImage: ImageView) {
         val randomInt = Random.nextInt(6) + 1
         val drawableResource = when (randomInt) {
             1 -> R.drawable.dice_1
@@ -28,6 +30,6 @@ class MainActivity : AppCompatActivity() {
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
         }
-        binding.diceImage.setImageResource(drawableResource)
+        diceImage.setImageResource(drawableResource)
     }
 }
